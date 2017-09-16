@@ -28,6 +28,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'Valloric/YouCompleteMe'
 " Navigation (IDE frame)
 Plugin 'scrooloose/nerdtree'
+Plugin 'rizzatti/dash.vim'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -37,12 +38,17 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'dkprice/vim-easygrep'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'raimondi/delimitmate'
+Plugin 'myusuf3/numbers.vim'
+Plugin 'tpope/vim-endwise'
 " visual undo list
 Plugin 'sjl/gundo.vim'
 " Plugin 'majutsushi/tagbar'
 " markdown preview: opens browser with live reload when vim opens .md
-Plugin 'suan/vim-instant-markdown'
+"Plugin 'suan/vim-instant-markdown'
 Plugin 'godlygeek/tabular'
 " language tools
 Plugin 'scrooloose/syntastic'
@@ -50,7 +56,7 @@ Plugin 'millermedeiros/vim-esformatter'
 Plugin 'digitaltoad/vim-pug'
 " Plugin 'elzr/vim-json'
 " Plugin 'SirVer/ultisnips'
-"Plugin 'sheerun/vim-polyglot'
+Plugin 'sheerun/vim-polyglot'
 " plugins from http://vim-scripts.org/vim/scripts.html
 Plugin 'node.js'
 Plugin 'SuperTab'
@@ -120,8 +126,8 @@ set wildmode=list:longest " turn on wild menu in special format (long format)
 set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.swp,*.jpg,*.gif,*.png " ignore formats
 set ruler " Always show current positions along the bottom
 set cmdheight=1 " the command bar is 1 high
-set number " turn on line numbers
 set lz " do not redraw while running macros (much faster) (LazyRedraw)
+set ttyfast " speed up Vim typing"
 set hid " you can change buffer without saving
 set backspace=2 " make backspace work normal
 set whichwrap+=<,>,h,l  " backspace and cursor keys wrap to
@@ -131,7 +137,8 @@ set report=0 " tell us when anything is changed via :...
 set noerrorbells " don't make noise
 set list " we do what to show tabs, to ensure we get them out of my files
 set listchars=tab:>-,trail:- " show tabs and trailing whitespace
-
+set number                     " Show current line number
+set relativenumber             " Show relative line numbers
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Visual Cues
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -217,6 +224,12 @@ function! SuperRetab(width) range
     silent! exe a:firstline . ',' . a:lastline . 's/\v%(^ *)@<= {'. a:width .'}/\t/g'
 endfunction
 
+" Change cursor shape between insert and normal mode in iTerm2.app
+if $TERM_PROGRAM =~ "iTerm"
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -226,7 +239,13 @@ endfunction
 " map <left> <ESC>:NERDTreeToggle<RETURN>  " moves left fa split
 " map <F2> <ESC>ggVG:call SuperRetab()<left>
 " map <F12> ggVGg? " apply rot13 for people snooping over shoulder, good fun
-
+"Remove all trailing whitespace by pressing F5
+nnoremap <F8> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+nnoremap <F5> :GundoToggle<CR> "sets toggle for Gundo undo map plugin
+let mapleader = ","
+ map <leader>vm :tabedit $MYVIMRC<cr>
+ "allow escaping with fd
+inoremap fd <esc>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Useful abbrevs
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -248,7 +267,13 @@ au FileType css set omnifunc=csscomplete#CompleteCSS
 au FileType xml set omnifunc=xmlcomplete#CompleteTags
 au FileType c set omnifunc=ccomplete#Complete
 " autocmd vimenter * NERDTree
-
+" Automatically read load upon save
+if has ('autocmd') " Remain compatible with earlier versions
+ augroup vimrc     " Source vim configuration upon save
+    autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+    autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
+  augroup END
+endif " has autocmd
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Change paging overlap amount from 2 to 5 (+3)
 " if you swapped C-y and C-e, and set them to 2, it would

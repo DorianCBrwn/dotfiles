@@ -66,7 +66,8 @@ module.exports = {
     'xquartz'
   ],
   gem: [
-    'git-up'
+    'git-up',
+    'rubocop'
   ],
   npm: [
     'antic',
