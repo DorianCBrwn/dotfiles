@@ -5,13 +5,21 @@ source /usr/local/share/antigen/antigen.zsh
 POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 
 # Powerlevel9k Customization
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir nvm vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history time)
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history time)
 # colorcode test
 # for code ({000..255}) print -P -- "$code: %F{$code}This is how your text would look like%f"
-POWERLEVEL9K_NVM_FOREGROUND='000'
-POWERLEVEL9K_NVM_BACKGROUND='072'
-POWERLEVEL9K_SHOW_CHANGESET=true
+#POWERLEVEL9K_NVM_FOREGROUND='000'
+#POWERLEVEL9K_NVM_BACKGROUND='072'
+#POWERLEVEL9K_SHOW_CHANGESET=true
+
+#BulletTrain
+BULLETTRAIN_PROMPT_ORDER=(
+  git
+  context
+  dir
+  time
+)
 
 #Antigen Plugins
 antigen use oh-my-zsh
@@ -28,7 +36,7 @@ if [ "$OSTYPE"="darwin11.0" ]; then
   antigen bundle osx
 fi
 
-antigen theme bhilburn/powerlevel9k powerlevel9k
+antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 
 antigen apply
 
