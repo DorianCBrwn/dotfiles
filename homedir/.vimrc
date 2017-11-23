@@ -38,8 +38,6 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'dkprice/vim-easygrep'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'raimondi/delimitmate'
 Plugin 'myusuf3/numbers.vim'
@@ -71,7 +69,7 @@ Plugin 'SuperTab'
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 " TypeScript
-Plugin 'leafgarland/typescript-vim'
+"Plugin 'leafgarland/typescript-vim'
 " Vue.js
 Plugin 'posva/vim-vue'
 

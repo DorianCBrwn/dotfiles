@@ -7,3 +7,6 @@
 [submodule "homedir/.vim/bundle/Vundle.vim"]
 	path = homedir/.vim/bundle/Vundle.vim
 	url = git://github.com/VundleVim/Vundle.vim.git
+[submodule "homedir/antigen"]
+	path = homedir/antigen
+	url = https://github.com/zsh-users/antigen.git
