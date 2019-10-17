@@ -4,8 +4,6 @@ module.exports = {
     'ag',
     // https://github.com/jkbrzt/httpie
     'httpie',
-    // jq is a sort of JSON grep
-    'jq',
     // Mac App Store CLI: https://github.com/mas-cli/mas
     'mas',
     // Install some other useful utilities like `sponge`
@@ -20,19 +18,14 @@ module.exports = {
   ],
   cask: [
     //'adium',
-    //'amazon-cloud-drive',
     'atom',
     // 'box-sync',
     //'comicbooklover',
     'diffmerge',
-    //'dropbox',
-    //'evernote',
     'gpgtools',
-    //'ireadfast',
     'iterm2',
     'little-snitch',
     'micro-snitch',
-    //'macvim',
     'sizeup',
     //'sketchup',
     'slack',
