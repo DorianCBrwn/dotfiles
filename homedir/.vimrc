@@ -25,7 +25,6 @@ call vundle#begin()
 " Keep Plugin commands between vundle#begin/end.
 " let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
-" Plugin 'Valloric/YouCompleteMe'
 " Navigation (IDE frame)
 Plugin 'scrooloose/nerdtree'
 Plugin 'rizzatti/dash.vim'
@@ -44,33 +43,17 @@ Plugin 'myusuf3/numbers.vim'
 Plugin 'tpope/vim-endwise'
 " visual undo list
 Plugin 'sjl/gundo.vim'
-" Plugin 'majutsushi/tagbar'
 " markdown preview: opens browser with live reload when vim opens .md
-"Plugin 'suan/vim-instant-markdown'
+Plugin 'suan/vim-instant-markdown'
 Plugin 'godlygeek/tabular'
 " language tools
 Plugin 'scrooloose/syntastic'
 Plugin 'millermedeiros/vim-esformatter'
 Plugin 'digitaltoad/vim-pug'
-" Plugin 'elzr/vim-json'
-" Plugin 'SirVer/ultisnips'
 Plugin 'sheerun/vim-polyglot'
 " plugins from http://vim-scripts.org/vim/scripts.html
 Plugin 'node.js'
 Plugin 'SuperTab'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-" TypeScript
-"Plugin 'leafgarland/typescript-vim'
-" Vue.js
 Plugin 'posva/vim-vue'
 
 " All of your Plugins must be added before the following line
