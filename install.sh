@@ -142,11 +142,6 @@ fi
 # install homebrew (CLI Packages)
 #####
 
-#High Sierra Xcode tools
-running "installing Xcode tool for homebrew"
-xcode-select --install
-ok
-
 running "checking homebrew install"
 brew_bin=$(which brew) 2>&1 > /dev/null
 if [[ $? != 0 ]]; then
