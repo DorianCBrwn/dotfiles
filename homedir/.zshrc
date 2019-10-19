@@ -1,8 +1,5 @@
 # Path to your antigen configuration.
-source /usr/local/share/antigen/antigen.zsh
-
-#Path to powerlevel9k theme
-POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
+source $(brew --prefix)/share/antigen/antigen.zsh
 
 #BulletTrain
 BULLETTRAIN_PROMPT_ORDER=(

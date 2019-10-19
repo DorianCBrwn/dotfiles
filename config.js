@@ -1,5 +1,8 @@
 module.exports = {
   brew: [
+    'antigen',
+    // https://github.com/wting/autojump
+    'autojump',
       // alternative to `cat`: https://github.com/sharkdp/bat
     'bat',
     // Install GNU core utilities (those that come with macOS are outdated)
@@ -28,17 +31,14 @@ module.exports = {
     //Executes a program periodically, showing output fullscreen:https://gitlab.com/procps-ng/procps
     'watch',
     // Install wget with IRI support
-    'wget --enable-iri'
+    'wget --enable-iri',
     // https://github.com/jkbrzt/httpie
     //'httpie',
-    // Mac App Store CLI: https://github.com/mas-cli/mas
-    'mas',
-     // https://github.com/wting/autojump
-    'autojump',
     // Install some other useful utilities like `sponge`: https://joeyh.name/code/moreutils/
     'moreutils',
     //Network Mapping and Scanning https://nmap.org/
     'nmap',
+    'mas',
     //Open-source software application for connecting to virtual private networks: https://www.infradead.org/openconnect/
     'openconnect',
     //Allows pbcoby and pbpaste in Tmux::https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard

@@ -6,6 +6,7 @@ module.exports = function _command(cmd, dir, cb) {
     if (err) {
       console.error(err, stdout, stderr);
     }
-    cb(err, stdout.split('\n').join(''));
+    cb(err, stdout.split('\n').join(''), stderr);
   });
 };
+
