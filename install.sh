@@ -125,6 +125,7 @@ if [[ $? = 0 ]]; then
     sed -i 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig
   fi
 fi
+
 # ###########################################################
 # Install non-brew various tools (PRE-BREW Installs)
 # ###########################################################
@@ -356,12 +357,8 @@ sudo systemsetup -setremoteappleevents off
 # Disable remote login
 sudo systemsetup -setremotelogin off
 
-# Disable wake-on modem
-sudo systemsetup -setwakeonmodem off
-
 # Disable wake-on LAN
 sudo systemsetup -setwakeonnetworkaccess off
-
 # Disable file-sharing via AFP or SMB
 # sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.AppleFileServer.plist
 # sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.smbd.plist
@@ -940,6 +937,26 @@ running "Installing the Solarized Light theme for iTerm (opening file)"
 open "./configs/Solarized Light.itermcolors";ok
 running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
 open "./configs/Solarized Dark Patch.itermcolors";ok
+running "Installing the Japanesque for iTerm (opening file)"
+open "./configs/Japanesque.itermcolors";ok
+running "Installing the MaterialDark for iTerm (opening file)"
+open "./configs/MaterialDark.itermcolors";ok
+running "Installing the Molokai for iTerm (opening file)"
+open "./configs/Molokai.itermcolors";ok
+running "Installing the Monokai for iTerm (opening file)"
+open "./configs/Monokai.itermcolors";ok
+running "Installing the OneHalfDark for iTerm (opening file)"
+open "./configs/OneHalfDark.itermcolors";ok
+running "Installing the PencilDarkfor iTerm (opening file)"
+open "./configs/PencilDarkfor.itermcolors";ok
+running "Installing the PurpleRain for iTerm (opening file)"
+open "./configs/PurpleRain.itermcolors";ok
+running "Installing the SeaShells for iTerm (opening file)"
+open "./configs/SeaShells.itermcolors";ok
+running "Installing the Slate for iTerm (opening file)"
+open "./configs/Slate.itermcolors";ok
+running "Installing the Cyberpunk for iTerm (opening file)"
+open "./configs/cyberpunk.itermcolors";ok
 
 running "Don’t display the annoying prompt when quitting iTerm"
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false;ok
@@ -1104,6 +1121,6 @@ for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
   killall "${app}" > /dev/null 2>&1
 done
 
-brew update && brew upgrade && brew cleanup && brew cask cleanup
+brew update && brew upgrade && brew cleanup
 
 bot "Woot! All done"
