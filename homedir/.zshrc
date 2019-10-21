@@ -12,6 +12,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 #Antigen Plugins
 antigen use oh-my-zsh
 antigen bundle git
+antigen bundle directories
 antigen bundle z
 antigen bundle cp
 antigen bundle zsh-users/zsh-autosuggestions
@@ -19,6 +20,10 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
 antigen bundle command-not-found
 antigen bundle compleat
+antigen bundle common-aliases
+antigen bundle rbenv
+antigen bundle ruby
+
 
 antigen bundle autojump # Enables autojump if installed with homebrew
 if [ "$OSTYPE"="darwin11.0" ]; then

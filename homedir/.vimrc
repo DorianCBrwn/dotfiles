@@ -1,16 +1,9 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Must Have
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme solarized
+set t_Co=256
 " syntax on " syntax highlighting on
 syntax enable
-let g:solarized_termtrans = 1
-call togglebg#map("<F5>")
-if has('gui_running')
-    set background=light
-else
-    set background=dark
-endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
@@ -41,6 +34,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'raimondi/delimitmate'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'tpope/vim-endwise'
+Plugin 'flazz/vim-colorschemes'
 " visual undo list
 Plugin 'sjl/gundo.vim'
 " markdown preview: opens browser with live reload when vim opens .md
@@ -55,6 +49,8 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'node.js'
 Plugin 'SuperTab'
 Plugin 'posva/vim-vue'
+" Theme Plugins
+Plugin 'flrnprz/candid.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -311,4 +307,4 @@ let g:syntastic_pug_checkers = ['jade','pug']
 " Other
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:sneak#streak = 1
-let g:airline_theme='bubblegum'
+let g:airline_theme='deus'
