@@ -1,9 +1,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Must Have
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set t_Co=256
-" syntax on " syntax highlighting on
-syntax enable
+set background=dark
+syntax on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
@@ -19,6 +18,7 @@ call vundle#begin()
 " let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
 " Navigation (IDE frame)
+Plugin 'junegunn/fzf.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'rizzatti/dash.vim'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -34,9 +34,8 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'raimondi/delimitmate'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'tpope/vim-endwise'
-Plugin 'flazz/vim-colorschemes'
-" visual undo list
 Plugin 'sjl/gundo.vim'
+Plugin 'junegunn/limelight.vim'
 " markdown preview: opens browser with live reload when vim opens .md
 Plugin 'suan/vim-instant-markdown'
 Plugin 'godlygeek/tabular'
@@ -45,12 +44,42 @@ Plugin 'scrooloose/syntastic'
 Plugin 'millermedeiros/vim-esformatter'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'kana/vim-textobj-user'
+Plugin 'rhysd/vim-textobj-ruby'
 " plugins from http://vim-scripts.org/vim/scripts.html
 Plugin 'node.js'
 Plugin 'SuperTab'
 Plugin 'posva/vim-vue'
 " Theme Plugins
-Plugin 'flrnprz/candid.vim'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'rainglow/vim'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'lifepillar/vim-solarized8'
+Plugin 'bluz71/vim-moonfly-colors'
+Plugin 'danilo-augusto/vim-afterglow'
+Plugin 'nightsense/seabird'
+Plugin 'tomasiser/vim-code-dark'
+
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plugin 'Shougo/deoplete.nvim'
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
+if has('nvim')
+  " vim-test setup
+  let test#strategy = {
+    \ 'nearest': 'neovim',
+    \ 'file':    'neovim',
+    \ 'suite':   'dispatch_background',
+  \}
+
+  set termguicolors
+endif
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -66,9 +95,53 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Fzf
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set rtp+=/usr/local/opt/fzf
+"Set FZF to match color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+"Add preview window for files command
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+"Mappings
+nnoremap <silent> <leader>f :FZF<cr>
+nnoremap <silent> <leader>F :FZF ~<cr>
+nnoremap <silent> <leader><space> :Files<CR>
+nnoremap <silent> <leader>a :Buffers<CR>
+nnoremap <silent> <leader>A :Windows<CR>
+nnoremap <silent> <leader>; :BLines<CR>
+nnoremap <silent> <leader>o :BTags<CR>
+nnoremap <silent> <leader>O :Tags<CR>
+nnoremap <silent> <leader>? :History<CR>
+
+" Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set colorscheme
+colorscheme  PaperColor
 " set UTF-8 encoding
 set enc=utf-8
 set fenc=utf-8
@@ -80,7 +153,7 @@ set ffs=unix,dos,mac " support all three, in this order
 set viminfo+=! " make sure it can save viminfo
 set isk+=_,$,@,%,# " none of these should be word dividers, so make them not be
 set nosol " leave my cursor where it was
-
+let mapleader = "\<Space>"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Files/Backups/Sessions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -109,7 +182,7 @@ set hid " you can change buffer without saving
 set backspace=2 " make backspace work normal
 set whichwrap+=<,>,h,l  " backspace and cursor keys wrap to
 set mouse=a " use mouse everywhere
-set shortmess=atI " shortens messages to avoid 'press a key' prompt
+set shortmess=atIF " shortens messages to avoid 'press a key' prompt
 set report=0 " tell us when anything is changed via :...
 set noerrorbells " don't make noise
 set list " we do what to show tabs, to ensure we get them out of my files
@@ -211,15 +284,14 @@ endif
 " Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " map <up> <ESC>:bp<RETURN> " left arrow (normal mode) switches buffers
-" map <down> <ESC>:bn<RETURN> " right arrow (normal mode) switches buffers
+map <silent> <right> <ESC>:bn<RETURN> " right arrow (normal mode) switches buffers
 " map <right> <ESC>:Tlist<RETURN> " show taglist
-" map <left> <ESC>:NERDTreeToggle<RETURN>  " moves left fa split
+map <left> <ESC>:NERDTreeToggle<RETURN>  " moves left fa split
 " map <F2> <ESC>ggVG:call SuperRetab()<left>
-" map <F12> ggVGg? " apply rot13 for people snooping over shoulder, good fun
+map <F12> ggVGg? " apply rot13 for people snooping over shoulder, good fun
 "Remove all trailing whitespace by pressing F5
 nnoremap <F8> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 nnoremap <F5> :GundoToggle<CR> "sets toggle for Gundo undo map plugin
-let mapleader = ","
  map <leader>vm :tabedit $MYVIMRC<cr>
  "allow escaping with fd
 inoremap fd <esc>
@@ -259,8 +331,8 @@ endif " has autocmd
 nnoremap <C-b> <C-b>3<C-e> "  Make overlap 3 extra on control-b
 
 " Yank text to the OS X clipboard
-noremap <leader>y "*y
-noremap <leader>yy "*Y
+noremap <leader>y "*y"
+noremap <leader>yy "*Y"
 
 " Preserve indentation while pasting text from the OS X clipboard
 noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
@@ -307,4 +379,18 @@ let g:syntastic_pug_checkers = ['jade','pug']
 " Other
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:sneak#streak = 1
-let g:airline_theme='deus'
+let g:textobj_ruby_more_mappings = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Airline Config
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline_theme='papercolor'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Limelight Config
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Get default from :h lightline
+let g:lightline = {
+    \ 'colorscheme': 'papercolor',
+    \ }
