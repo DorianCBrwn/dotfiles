@@ -38,6 +38,8 @@ id_rsa
 Session.vim
 .netrwhist
 *~
+plug.vim
+plugged/
 
 #########
 # Maven #
