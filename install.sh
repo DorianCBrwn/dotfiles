@@ -193,6 +193,9 @@ require_brew zsh
 RUBY_CONFIGURE_OPTS="--with-openssl-dir=`brew --prefix openssl` --with-readline-dir=`brew --prefix readline` --with-libyaml-dir=`brew --prefix libyaml`"
 require_brew ruby
 
+#update gem sources
+gem sources --add https://rubygems.org
+
 bot "Dotfiles Setup"
 read -r -p "symlink ./homedir/* files in ~/ (these are the dotfiles)? [y|N] " response
 if [[ $response =~ (y|yes|Y) ]]; then
