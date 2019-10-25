@@ -5,88 +5,64 @@ set background=dark
 syntax on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vundle
+"Vim Plug
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-" Keep Plugin commands between vundle#begin/end.
-" let Vundle manage Vundle
-Plugin 'VundleVim/Vundle.vim'
 " Navigation (IDE frame)
-Plugin 'junegunn/fzf.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'rizzatti/dash.vim'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-sensible'
-Plugin 'justinmk/vim-sneak'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-surround'
-Plugin 'dkprice/vim-easygrep'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'raimondi/delimitmate'
-Plugin 'myusuf3/numbers.vim'
-Plugin 'tpope/vim-endwise'
-Plugin 'sjl/gundo.vim'
-Plugin 'junegunn/limelight.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'rizzatti/dash.vim'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
+Plug 'justinmk/vim-sneak'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'
+Plug 'dkprice/vim-easygrep'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'raimondi/delimitmate'
+Plug 'myusuf3/numbers.vim'
+Plug 'tpope/vim-endwise'
+Plug 'natebosch/vim-lsc'
+Plug 'sjl/gundo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-commentary'
 " markdown preview: opens browser with live reload when vim opens .md
-Plugin 'suan/vim-instant-markdown'
-Plugin 'godlygeek/tabular'
+Plug 'suan/vim-instant-markdown'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-projectionist'
+Plug 'dense-analysis/ale'
 " language tools
-Plugin 'scrooloose/syntastic'
-Plugin 'millermedeiros/vim-esformatter'
-Plugin 'digitaltoad/vim-pug'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'kana/vim-textobj-user'
-Plugin 'rhysd/vim-textobj-ruby'
-" plugins from http://vim-scripts.org/vim/scripts.html
-Plugin 'node.js'
-Plugin 'SuperTab'
-Plugin 'posva/vim-vue'
+Plug 'scrooloose/syntastic'
+Plug 'millermedeiros/vim-esformatter'
+Plug 'digitaltoad/vim-pug'
+Plug 'sheerun/vim-polyglot'
+Plug 'kana/vim-textobj-user'
+Plug 'rhysd/vim-textobj-ruby'
 " Theme Plugins
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'rainglow/vim'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'lifepillar/vim-solarized8'
-Plugin 'bluz71/vim-moonfly-colors'
-Plugin 'danilo-augusto/vim-afterglow'
-Plugin 'nightsense/seabird'
-Plugin 'tomasiser/vim-code-dark'
+Plug 'ryanoasis/vim-devicons'
+Plug 'rainglow/vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'lifepillar/vim-solarized8'
+Plug 'bluz71/vim-moonfly-colors'
+Plug 'danilo-augusto/vim-afterglow'
+Plug 'nightsense/seabird'
+Plug 'tomasiser/vim-code-dark'
+"-----------------------------
+" Completion plugins
+"-----------------------------
+Plug 'ajh17/VimCompletesMe'
+Plug 'natebosch/vim-lsc'
 
-if has('nvim')
-  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plugin 'Shougo/deoplete.nvim'
-  Plugin 'roxma/nvim-yarp'
-  Plugin 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
+call plug#end()
 
-if has('nvim')
-  " vim-test setup
-  let test#strategy = {
-    \ 'nearest': 'neovim',
-    \ 'file':    'neovim',
-    \ 'suite':   'dispatch_background',
-  \}
-
-  set termguicolors
-endif
-
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -141,7 +117,7 @@ command! -bang -nargs=* Rg
 " General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set colorscheme
-colorscheme  PaperColor
+colorscheme moonfly
 " set UTF-8 encoding
 set enc=utf-8
 set fenc=utf-8
@@ -154,6 +130,7 @@ set viminfo+=! " make sure it can save viminfo
 set isk+=_,$,@,%,# " none of these should be word dividers, so make them not be
 set nosol " leave my cursor where it was
 let mapleader = "\<Space>"
+set termguicolors
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Files/Backups/Sessions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
