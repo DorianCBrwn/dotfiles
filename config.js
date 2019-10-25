@@ -52,12 +52,13 @@ module.exports = {
     //Command-line fuzzy finder written in Go: https://github.com/junegunn/fzf
     'fzf',
     //Play, record, convert, and stream audio and video: https://ffmpeg.org/
-    'ffmpeg'
+    'ffmpeg',
+    //Neovim editor
+    'neovim'
   ],
   cask: [
     'atom',
     'alfred',
-    'diffmerge',
     'iterm2',
     'little-snitch',
     'micro-snitch',
@@ -82,7 +83,9 @@ module.exports = {
     'Metamagic',
     'rails_config',
     'Sequel',
-    'Brakeman'
+    'Brakeman',
+    'pry',
+    'solargraph'
   ],
   npm: [
     'antic',
