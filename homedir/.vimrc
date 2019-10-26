@@ -131,6 +131,12 @@ set isk+=_,$,@,%,# " none of these should be word dividers, so make them not be
 set nosol " leave my cursor where it was
 let mapleader = "\<Space>"
 set termguicolors
+set complete=.,w,b    " Sources for term and line completions
+set dictionary=/usr/share/dict/words
+
+"if has('nvim-0.3.2') || has("patch-8.1.0360")
+"    set diffopt=filler,internal,algorithm:histogram,indent-heuristic
+"endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Files/Backups/Sessions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -203,7 +209,8 @@ set nowrap " do not wrap line
 set preserveindent " but above all -- follow the conventions laid before us
 set ignorecase " case insensitive by default
 set smartcase " if there are caps, go case-sensitive
-set completeopt=menu,longest,preview " improve the way autocomplete works
+set completeopt=menu,menuone,noinsert,noselect
+"set completeopt=menu,longest,preview " improve the way autocomplete works
 set cursorcolumn " show the current column
 set cursorline
 " hi CursorLine term=underline ctermbg=008 guibg=#493a35
@@ -263,7 +270,7 @@ endif
 " map <up> <ESC>:bp<RETURN> " left arrow (normal mode) switches buffers
 map <silent> <right> <ESC>:bn<RETURN> " right arrow (normal mode) switches buffers
 " map <right> <ESC>:Tlist<RETURN> " show taglist
-map <left> <ESC>:NERDTreeToggle<RETURN>  " moves left fa split
+nnoremap <left> <ESC>:NERDTreeToggle<RETURN>  " moves left fa split
 " map <F2> <ESC>ggVG:call SuperRetab()<left>
 map <F12> ggVGg? " apply rot13 for people snooping over shoulder, good fun
 "Remove all trailing whitespace by pressing F5
