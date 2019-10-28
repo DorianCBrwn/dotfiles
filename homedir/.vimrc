@@ -77,7 +77,7 @@ call plug#end()
 " General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set colorscheme
-colorscheme moonfly
+colorscheme papercolor
 " set UTF-8 encoding
 set enc=utf-8
 set fenc=utf-8
