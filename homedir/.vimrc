@@ -34,6 +34,7 @@ Plug 'sjl/gundo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
+Plug 't9md/vim-ruby-xmpfilter'
 " markdown preview: opens browser with live reload when vim opens .md
 Plug 'suan/vim-instant-markdown'
 Plug 'godlygeek/tabular'
@@ -72,6 +73,30 @@ call plug#end()
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set colorscheme
+colorscheme moonfly
+" set UTF-8 encoding
+set enc=utf-8
+set fenc=utf-8
+set termencoding=utf-8
+set history=1000 " How many lines of history to remember
+set cf " enable error files and error jumping
+" set clipboard+=unnamed " turns out I do like sharing windows clipboard
+set ffs=unix,dos,mac " support all three, in this order
+set viminfo+=! " make sure it can save viminfo
+set isk+=_,$,@,%,# " none of these should be word dividers, so make them not be
+set nosol " leave my cursor where it was
+let mapleader = "\<Space>"
+set termguicolors
+set complete=.,w,b    " Sources for term and line completions
+set dictionary=/usr/share/dict/words
+
+"if has('nvim-0.3.2') || has("patch-8.1.0360")
+"    set diffopt=filler,internal,algorithm:histogram,indent-heuristic
+"endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Fzf
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -113,30 +138,6 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" General
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set colorscheme
-colorscheme moonfly
-" set UTF-8 encoding
-set enc=utf-8
-set fenc=utf-8
-set termencoding=utf-8
-set history=1000 " How many lines of history to remember
-set cf " enable error files and error jumping
-" set clipboard+=unnamed " turns out I do like sharing windows clipboard
-set ffs=unix,dos,mac " support all three, in this order
-set viminfo+=! " make sure it can save viminfo
-set isk+=_,$,@,%,# " none of these should be word dividers, so make them not be
-set nosol " leave my cursor where it was
-let mapleader = "\<Space>"
-set termguicolors
-set complete=.,w,b    " Sources for term and line completions
-set dictionary=/usr/share/dict/words
-
-"if has('nvim-0.3.2') || has("patch-8.1.0360")
-"    set diffopt=filler,internal,algorithm:histogram,indent-heuristic
-"endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Files/Backups/Sessions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -275,7 +276,7 @@ nnoremap <left> <ESC>:NERDTreeToggle<RETURN>  " moves left fa split
 map <F12> ggVGg? " apply rot13 for people snooping over shoulder, good fun
 "Remove all trailing whitespace by pressing F5
 nnoremap <F8> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
-nnoremap <F5> :GundoToggle<CR> "sets toggle for Gundo undo map plugin
+nnoremap <F3> :GundoToggle<CR> "sets toggle for Gundo undo map plugin
  map <leader>vm :tabedit $MYVIMRC<cr>
  "allow escaping with fd
 inoremap fd <esc>
@@ -378,3 +379,17 @@ let g:airline_powerline_fonts = 1
 let g:lightline = {
     \ 'colorscheme': 'papercolor',
     \ }
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"ruby xmp-filter Config
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable seeing-is-believing mappings only for Ruby
+let g:xmpfilter_cmd = "seeing_is_believing"
+autocmd FileType ruby nmap <buffer> <F4> <Plug>(seeing_is_believing-mark)
+autocmd FileType ruby xmap <buffer> <F4> <Plug>(seeing_is_believing-mark)
+autocmd FileType ruby imap <buffer> <F4> <Plug>(seeing_is_believing-mark)
+autocmd FileType ruby nmap <buffer> <F6> <Plug>(seeing_is_believing-clean)
+autocmd FileType ruby xmap <buffer> <F6> <Plug>(seeing_is_believing-clean)
+autocmd FileType ruby imap <buffer> <F6> <Plug>(seeing_is_believing-clean)
+autocmd FileType ruby nmap <buffer> <F5> <Plug>(seeing_is_believing-run)
+autocmd FileType ruby xmap <buffer> <F5> <Plug>(seeing_is_believing-run)
+autocmd FileType ruby imap <buffer> <F5> <Plug>(seeing_is_believing-run)

@@ -119,6 +119,30 @@ antigen theme bhilburn/powerlevel9k powerlevel9k
 
 antigen apply
 
+ # 'fzf' configuration.
+    . $BREW_PREFIX/opt/fzf/shell/key-bindings.zsh
+    export FZF_DEFAULT_OPTS='
+      --height 75% --multi --reverse
+      --bind ctrl-f:page-down,ctrl-b:page-up
+      --prompt="❯ "
+      --color hl:13,fg+:253,bg+:234,hl+:13
+      --color info:11,border:237,prompt:111,pointer:9,marker:8,spinner:10,header:4
+    '
+    export FZF_DEFAULT_COMMAND='fd --type f --color=never'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_CTRL_T_OPTS='--preview "bat --color=always --line-range :500 {}"'
+    export FZF_ALT_C_COMMAND='fd --type d . --color=never'
+    export FZF_ALT_C_OPTS='--preview "tree -C {} | head -100"'
+    # This is an undocumented environment variable for use by fzf.vim, see:
+    # https://github.com/junegunn/fzf.vim/pull/707
+    export FZF_PREVIEW_COMMAND='bat --color=always {}'
+
+    # 'bat' configuration.
+    export BAT_CONFIG_PATH="$HOME/dotfiles/bat.conf"
+}
+#fzf scripts
+
+
 # Set to this to use case-sensitive completion
 # export CASE_SENSITIVE="true"
 
