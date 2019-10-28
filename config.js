@@ -86,6 +86,7 @@ module.exports = {
     'Brakeman',
     'pry',
     'solargraph'
+    'seeing_is_believing'
   ],
   npm: [
     'antic',
